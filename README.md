@@ -24,7 +24,4 @@ logging.basicConfig(level=logging.WARNING, format=LOG_FORMAT)
 
 ## Vídeo
 
-
-
-https://github.com/elisaflemer/prova2-m10/assets/99259251/a737f087-36e4-49d0-9d7e-7ed07448edb2
-
+https://github.com/elisaflemer/prova2-m10/assets/99259251/eaaaacd2-5077-4089-ae06-4b44af715988
