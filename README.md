@@ -10,7 +10,7 @@ As rotas foram documentadas em Insomnia (disponível na pasta raiz do projeto).
 
 Todo o desenvolvimento foi feito em Docker Compose. Logo, não é necessário iniciar ambientes virtuais. Em vez disso, certifique-se, primeiro, de ter o Docker baixado em seu sistema e de estar com o daemon ativado. Então, execute, na pasta raiz do projeto:
 
-```
+```bash
 docker compose up
 ```
 
@@ -18,9 +18,13 @@ A partir daí, as rotas estarão acessíveis a partir da URL `http://localhost/b
 
 Para acessar os logs, confira a pasta `logs`. Os arquivos estarão separados por timestamp de 1 em um 1 minuto. Para alterar o nível das mensagens do log, baste modificar o argumento na linha 18 do arquivo `app/logging_config.py`.
 
-```
+```python
 logging.basicConfig(level=logging.WARNING, format=LOG_FORMAT)
 ```
 
 ## Vídeo
+
+
+
+https://github.com/elisaflemer/prova2-m10/assets/99259251/a737f087-36e4-49d0-9d7e-7ed07448edb2
 
