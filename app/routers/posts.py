@@ -26,33 +26,33 @@ class BlogPost:
 
 @router.post("/")
 def create_blog_post(blog_post: BlogPostRequest, status_code=status.HTTP_201_CREATED):
-    LOGGER.info({'message':'Creating post', 'post':blog_post, 'status_code':status_code, 'status':'success', 'method':'POST', 'url':'/blog'})
+    LOGGER.info({'message':'Creating post', 'post':blog_post, 'status':'success', 'method':'POST', 'url':'/blog'})
     try: 
         post = BlogPost(id=blog_post.id, title=blog_post.title, content=blog_post.content)
         blog_posts.append(post)
         return {'status':'success'}
     
     except KeyError:
-        LOGGER.warning(msg='Invalid request')
+        LOGGER.warning({'message':'Invalid request', 'status':'error', 'method':'POST', 'url':'/blog'})
         raise HTTPException(status_code=400, detail='Invalid request')
     
     except Exception as e:
-        LOGGER.error(msg=f'Error creating post: {str(e)}')
+        LOGGER.error({'message':'Error creating post', 'status':'error', 'method':'POST', 'url':'/blog', 'error':str(e)})
         raise HTTPException(status_code=500, detail=str(e))
     
 @router.get("/")
 def get_blog_posts():
-    LOGGER.info(msg='Getting all blog posts')
+    LOGGER.info({'message':'Getting posts', 'status':'success', 'method':'GET', 'url':'/blog'})
     LOGGER.debug(msg=f'Posts: {blog_posts}')
     return [post.toJson() for post in blog_posts]
 
 @router.get("/{id}")
 def get_blog_post(id: int):
-    LOGGER.info(msg=f'Getting post with id: {id}')
+    LOGGER.info({'message':'Getting post', 'id':id, 'status':'success', 'method':'GET', 'url':'/blog'})
     for post in blog_posts:
         if post.id == id:
             return post.toJson()
-    LOGGER.warning(msg='Post not found')
+    LOGGER.warning({'message':'Post not found', 'id':id, 'status':'error', 'method':'GET', 'url':'/blog'})
     raise HTTPException(status_code=404, detail='Post not found')
 
 @router.delete("/{id}")
@@ -62,13 +62,13 @@ def delete_blog_post(id: int):
         if post.id == id:
             blog_posts.pop(index)
             return {'status':'success'}
-    LOGGER.warning(msg='Post not found')
+    LOGGER.warning({'message':'Post not found', 'id':id, 'status':'error', 'method':'DELETE', 'url':'/blog'})
     raise HTTPException(status_code=404, detail='Post not found')
 
 @router.put("/{id}")
 def update_blog_post(id: int, blog_post: BlogPostUpdateRequest):
     try: 
-        LOGGER.info(msg=f'Updating post with id: {id}')
+        LOGGER.info({'message':'Updating post', 'id':id, 'status':'success', 'method':'PUT', 'url':'/blog'})
         LOGGER.debug(msg=f'Updated post: {blog_post}')
         for post in blog_posts:
             if post.id == id:
@@ -76,9 +76,9 @@ def update_blog_post(id: int, blog_post: BlogPostUpdateRequest):
                 post.content = blog_post.content
                 return {'status':'success'}
     except KeyError:
-        LOGGER.warning(msg='Invalid request')
+        LOGGER.warning({'message':'Invalid request', 'status':'error', 'method':'PUT', 'url':'/blog'})
         raise HTTPException(status_code=400, detail='Invalid request')
     except Exception as e:
-        LOGGER.error(msg=f'Error updating post: {str(e)}')
+        LOGGER.error({'message':'Error updating post', 'id':id, 'status':'error', 'method':'PUT', 'url':'/blog', 'error':str(e)})
         raise HTTPException(status_code=500, detail=str(e))
     

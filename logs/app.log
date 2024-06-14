@@ -1,2 +1,2 @@
-{"time": "2024-06-14 13:16:05,214", "name": "routers.posts", "level": "WARNING", "message": "Post not found"}
-{"time": "2024-06-14 13:16:06,390", "name": "routers.posts", "level": "WARNING", "message": "Post not found"}
+{"time": "2024-06-14 13:38:15,422", "name": "routers.posts", "level": "WARNING", "message": "{'message': 'Post not found', 'id': 5, 'status': 'error', 'method': 'GET', 'url': '/blog'}"}
+{"time": "2024-06-14 13:39:01,800", "name": "routers.posts", "level": "WARNING", "message": "{'message': 'Post not found', 'id': 4, 'status': 'error', 'method': 'DELETE', 'url': '/blog'}"}
